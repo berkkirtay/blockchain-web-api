@@ -1,0 +1,22 @@
+{
+    "users": [
+        {
+            "name": "person1",
+            "balance": 50.200000000000045,
+            "publicAddress": "241d581b957d9f06d86e8e8f102a4a18352b36e7e36393a4139ca12315cbfdc9",
+            "privateAddress": "51257d3be11c6cfcda4395a15f8c3467accf249650d4ffc80b774f1a4680681b"
+        },
+        {
+            "name": "person2",
+            "balance": 400,
+            "publicAddress": "218e5f432dd9446369895be6e26fd4203b1cbc88af49b5c24fa43566fda895d9",
+            "privateAddress": "90aed69d6831af609a4923ebc87e5b36d01abf880a8705e7d5d1a8f3c20fa267"
+        },
+        {
+            "name": "berk",
+            "balance": 550,
+            "publicAddress": "7a183d8629b0c640adb76efd475fb8749627f8b1890674b0d947107d28562075",
+            "privateAddress": "420684f723950bf71598dd497b8a3e3372e85708f4ad0d72af36c1e8723b9da6"
+        }
+    ]
+}

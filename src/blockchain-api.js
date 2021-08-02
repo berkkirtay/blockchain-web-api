@@ -30,6 +30,7 @@ var fs = require('fs');
 
 var wallets = [];
 var transactionData = [];
+var blocks = [];
 
 
 async function readWallet() {
@@ -45,6 +46,13 @@ async function readWallet() {
             throw err;
         }
         transactionData = await JSON.parse(data);
+    });
+
+    fs.readFile('.//public/blockchainData.json', 'utf8', async (err, data) => {
+        if (err) {
+            throw err;
+        }
+        blocks = await JSON.parse(data);
     });
 }
 
@@ -140,7 +148,7 @@ app.get('/createWallet', (req, res) => {
 app.post('/createWallet', async (req, res) => {
     const publicName = req.body.createWallet.publicName;
     const publicPass = req.body.createWallet.publicPass;
-    const python = await spawn('python', ['api-scripts/createWallet.py', publicName, publicPass]);
+    const python = await spawn('python', ['../api-scripts/createWallet.py', publicName, publicPass]);
     /* python.stdout.on('data', function (data) {
          console.log(data.toString());
      })*/
@@ -165,7 +173,7 @@ app.get('/users/:id', (req, res) => {
 
 app.get('/users/:id/delete', async (req, res) => {
     const id = req.params.id;
-    const python = await spawn('python', ['api-scripts/deleteWallet.py', id]);
+    const python = await spawn('python', ['../api-scripts/deleteWallet.py', id]);
     console.log("Wallet " + id + " is deleted.");
     // deleteUserFromDB(id);
     return res.redirect('/users');
@@ -193,11 +201,45 @@ app.post('/transactions', async (req, res) => {
 
     var currentUser = currentSession.getCurrentUser(req.session);
 
-    const python = await spawn('python', ['api-scripts/handleTransaction.py', currentUser.name, publicAddress, coinAmount]);
+    const python = await spawn('python', ['../api-scripts/handleTransaction.py', currentUser.name, publicAddress, coinAmount]);
     /* python.stdout.on('data', function (data) {
         console.log(data.toString());
     })*/
     return res.redirect('/transactions');
+})
+
+// Requests about blockchain status/demonstration.
+
+app.get('/blockchain', (req, res) => {
+    var isUserSpecified = currentSession.getUserStatus(req.session);
+    var currentUser = currentSession.getCurrentUser(req.session);
+
+    readWallet();
+    refreshCurrentUser(currentUser.name, req.session);
+
+    res.render("blockchainStatus", { title: "Blockchain", isUserSpecified, user: currentUser, blocks: blocks });
+})
+
+app.get('/transactionTest', async (req, res) => {
+    const python = await spawn('python', ['../api-scripts/transactionTest.py']);
+    console.log("Test is completed.");
+    return res.redirect('/');
+
+})
+
+app.get('/chat', async (req, res) => {
+    var isUserSpecified = currentSession.getUserStatus(req.session);
+    var currentUser = currentSession.getCurrentUser(req.session);
+
+    readWallet();
+    refreshCurrentUser(currentUser.name, req.session);
+
+    res.render("blockchainChat", { title: "Blockchain", isUserSpecified, user: currentUser, blocks: blocks });
+})
+
+app.post('/chat', (req, res) => {
+
+
 })
 
 // If server receives an undefined request, it will return a 404 error.

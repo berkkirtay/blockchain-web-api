@@ -44,7 +44,7 @@ class block():
     # is a poor way to generate different hash every turn.
     def proofOfWork(self):
         initialTime = datetime.now()
-        while self.blockHash[len(self.blockHash) - self.hashDifficulty:] != "a" * self.hashDifficulty:
+        while self.blockHash[len(self.blockHash) - self.hashDifficulty:] != "0" * self.hashDifficulty:
             self.blockHash = self.generateBlockHash()
             self.blockMineSize += 1
 
@@ -84,8 +84,10 @@ class blockchain():
 
     def newBlock(self, transactions):
         self.validationFlag = self.validateBlockChain()
-        self.blockchain.append(
-            block(self.getCurrentBlock().blockHash, self.hashDifficulty, transactions))
+
+        if self.validationFlag == True:
+            self.blockchain.append(
+                block(self.getCurrentBlock().blockHash, self.hashDifficulty, transactions))
 
     # For security reasons, we will need to validate our blockchain.
     def validateBlockChain(self):
@@ -119,7 +121,8 @@ class blockchain():
             return False
         else:
             self.transactions.append(newTransaction)
-            self.handleTransaction("null")  # Attention here!
+            # Activate this to get only one transaction per block.
+            # self.handleTransaction("null")
             return True
 
     def forceTransaction(self, newTransaction):
@@ -147,6 +150,9 @@ class blockchain():
             self.newBlock(self.transactions)
 
         self.transactions = []
+
+        # We can change "null" with the user
+        # who does the work.
         self.transactions.append(transaction(
             "null", miningRewardAddress, self.miningReward * work))
         return True

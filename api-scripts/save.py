@@ -23,20 +23,42 @@ def save(block, wallets):
     with open('./public/walletData.json', 'w', encoding='utf-8') as f:
         json.dump(walletJSON, f, ensure_ascii=False, indent=4)
 
-    transactions = {"transactions": []}
+    transactions = {
+        "transactions": []
+    }
+    blocks = {
+        "numberOfBlocks": len(block.blockchain),
+        "blocks": []
+    }
+    blockCounter = 1
+
     for block in block.blockchain:
+        newBlock = {
+            "blockNumber": blockCounter,
+            "previousHash": block.previousBlockHash,
+            "blockHash": block.blockHash,
+            "hashDifficulty": block.hashDifficulty,
+            "blockTransactions": len(block.blockTransactions),
+            "validationTime": block.validationTime
+        }
+        blocks["blocks"].append(newBlock)
+        blockCounter += 1
+
         for blockTransaction in block.blockTransactions:
             newTransaction = {
                 "source":  blockTransaction.source,
                 "destination": blockTransaction.destination,
                 "balance": blockTransaction.coins,
-                "transactionHash": blockTransaction.transactionHash
+                "transactionHash": blockTransaction.transactionHash,
+                "validationTime": blockTransaction.validationTime
             }
-
             transactions["transactions"].append(newTransaction)
 
     with open('./public/transactionData.json', 'w', encoding='utf-8') as f:
         json.dump(transactions, f, ensure_ascii=False, indent=4)
+
+    with open('./public/blockchainData.json', 'w', encoding='utf-8') as f:
+        json.dump(blocks, f, ensure_ascii=False, indent=4)
 
 
 def loadBlock():

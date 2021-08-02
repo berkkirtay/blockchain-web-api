@@ -2,21 +2,27 @@
     "users": [
         {
             "name": "person1",
-            "balance": 50.200000000000045,
+            "balance": 2,
             "publicAddress": "241d581b957d9f06d86e8e8f102a4a18352b36e7e36393a4139ca12315cbfdc9",
-            "privateAddress": "51257d3be11c6cfcda4395a15f8c3467accf249650d4ffc80b774f1a4680681b"
+            "privateAddress": "098bd327bf1512fd18656fa2168290c2daeac34af8ade0cba736ddb7edcc7c3e"
         },
         {
             "name": "person2",
-            "balance": 400,
+            "balance": 0,
             "publicAddress": "218e5f432dd9446369895be6e26fd4203b1cbc88af49b5c24fa43566fda895d9",
-            "privateAddress": "90aed69d6831af609a4923ebc87e5b36d01abf880a8705e7d5d1a8f3c20fa267"
+            "privateAddress": "9ac1e24cd9bd014adda8d68add91d69af06936cd11bb4e81a0c9e92b50a4615f"
+        },
+        {
+            "name": "someone",
+            "balance": 9999992000000000,
+            "publicAddress": "2a59d59e3809f827ce709d3815e3950eef4a6a93af5557a93a7fdfba71460843",
+            "privateAddress": "02959b9a908c39b735a32f23cbbf613a60be342f5fc6e4c3c39fcf41bea1aeb3"
         },
         {
             "name": "berk",
-            "balance": 550,
+            "balance": 0,
             "publicAddress": "7a183d8629b0c640adb76efd475fb8749627f8b1890674b0d947107d28562075",
-            "privateAddress": "420684f723950bf71598dd497b8a3e3372e85708f4ad0d72af36c1e8723b9da6"
+            "privateAddress": "b4964204ad873f5f22e4800ff546bbd212dcfe08a643bde4d370be468c35ef2d"
         }
     ]
 }

@@ -1,10 +1,10 @@
 To start the server, just execute startServer.py with node modules.
 
-I implement this web-api as I learn about web development. So, it is quite beginner but I will keep working on this implementation. 
+I implement this web-api as I learn about web development. So, it is quite beginner but I will keep working on this project. 
 
 The components I used: 
-- Node.js
-- Ejs
+- The blockchain library I wrote and its API.
+- Node.js for backend
+- Ejs and CSS for frontend
 - Json for a basic local database
-- CSS for styling
 - MongoDB for express-session

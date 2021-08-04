@@ -1,28 +1,28 @@
 {
     "users": [
         {
-            "name": "person1",
-            "balance": 2,
-            "publicAddress": "241d581b957d9f06d86e8e8f102a4a18352b36e7e36393a4139ca12315cbfdc9",
-            "privateAddress": "098bd327bf1512fd18656fa2168290c2daeac34af8ade0cba736ddb7edcc7c3e"
-        },
-        {
-            "name": "person2",
+            "name": "genesis-wallet",
             "balance": 0,
-            "publicAddress": "218e5f432dd9446369895be6e26fd4203b1cbc88af49b5c24fa43566fda895d9",
-            "privateAddress": "9ac1e24cd9bd014adda8d68add91d69af06936cd11bb4e81a0c9e92b50a4615f"
-        },
-        {
-            "name": "someone",
-            "balance": 9999992000000000,
-            "publicAddress": "2a59d59e3809f827ce709d3815e3950eef4a6a93af5557a93a7fdfba71460843",
-            "privateAddress": "02959b9a908c39b735a32f23cbbf613a60be342f5fc6e4c3c39fcf41bea1aeb3"
+            "publicAddress": "cc8ce0e9d5c800b2bdc5daab33f7bad3b75d8da6c682669877b75bd8dbd9d6d3",
+            "privateAddress": "6e936c6dde7abe11bf72323428bb57d7cbac135d62c6ea9f75cd99ba4aad3a38"
         },
         {
             "name": "berk",
             "balance": 0,
             "publicAddress": "7a183d8629b0c640adb76efd475fb8749627f8b1890674b0d947107d28562075",
-            "privateAddress": "b4964204ad873f5f22e4800ff546bbd212dcfe08a643bde4d370be468c35ef2d"
+            "privateAddress": "6526741f4dec1f3bf51f172e1ab0776fd0d4eaed75d21f3b881bfe77fb131fbb"
+        },
+        {
+            "name": "berk2",
+            "balance": 322331431320321,
+            "publicAddress": "583fa7b4f428e6e3b56ce017ba57f30b55562111a7a29aa62281452a94dade18",
+            "privateAddress": "5edf3c77aee4ec826eada7b1f00c3f45be782e0ab78429fc0372ba2dfadb318a"
+        },
+        {
+            "name": "someone",
+            "balance": 11022132321,
+            "publicAddress": "2a59d59e3809f827ce709d3815e3950eef4a6a93af5557a93a7fdfba71460843",
+            "privateAddress": "871d4ceab6bd4ef9b27eaf030ac6619bc12f14e85cbdccc8a559d8dc747508b2"
         }
     ]
 }

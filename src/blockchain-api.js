@@ -234,11 +234,21 @@ app.get('/chat', async (req, res) => {
     readWallet();
     refreshCurrentUser(currentUser.name, req.session);
 
-    res.render("blockchainChat", { title: "Blockchain", isUserSpecified, user: currentUser, blocks: blocks });
+    res.render("blockchainChat", { title: "Chat", isUserSpecified, user: currentUser, transactions: transactionData.transactions });
 })
 
-app.post('/chat', (req, res) => {
+app.post('/chat', async (req, res) => {
 
+    var currentUser = currentSession.getCurrentUser(req.session);
+    const textToBeSent = req.body.newMessage;
+    console.log(textToBeSent);
+
+
+    const python = await spawn('python', ['../api-scripts/handleChat.py', currentUser.name, textToBeSent]);
+    /* python.stdout.on('data', function (data) {
+        console.log(data.toString());
+    })*/
+    return res.redirect('/chat');
 
 })
 

@@ -125,6 +125,9 @@ class blockchain():
             # self.handleTransaction("null")
             return True
 
+    def addText(self, newText):
+        self.transactions.append(newText)
+
     def forceTransaction(self, newTransaction):
         print(
             f"Transaction is forced. {newTransaction.coins} added to {newTransaction.destination}")
@@ -161,18 +164,23 @@ class blockchain():
     # with checking all transactions within the blockchain.
     def getBalance(self, addressofBalance):
         availableCoins = 0
+        # With try/catch block, we prevent chat and balance
+        # blocks to mix (We cannot mix ints and strings).
         for i in range(len(self.blockchain)):
             for j in range(len(self.blockchain[i].blockTransactions)):
-                if self.blockchain[i].blockTransactions[j].destination == addressofBalance:
-                    availableCoins += self.blockchain[i].blockTransactions[j].coins
-                if self.blockchain[i].blockTransactions[j].source == addressofBalance:
-                    availableCoins -= self.blockchain[i].blockTransactions[j].coins
+                try:
+                    if self.blockchain[i].blockTransactions[j].destination == addressofBalance:
+                        availableCoins += self.blockchain[i].blockTransactions[j].coins
+                    if self.blockchain[i].blockTransactions[j].source == addressofBalance:
+                        availableCoins -= self.blockchain[i].blockTransactions[j].coins
+                except:
+                    continue
 
         return availableCoins
 
+
 # Transaction class saves source and destination
 # of the transfers with a validation.
-
 
 class transaction():
     source = ''

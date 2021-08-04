@@ -25,15 +25,17 @@
               <% if(transaction.source==='null' || transaction.destination==='null' ) { %>
                 <!-- <li id="transactionBlock">
                    <h4>Transaction fee: <%= transaction.balance %> </h4>-->
-                <% } else { %>
+                <% } else if(Number.isInteger(transaction.balance)===true) { %>
                   <li id="transactionBlock">
                     <h4>From <span style="color:red">
                         <%= transaction.source %>
                       </span> to <span style="color:red">
                         <%= transaction.destination %>
-                      </span>, <span style="color: red">Transaction amount: <%= transaction.balance %></span>,
-                      Validation Time:
-                      <%= transaction.validationTime %>
+                      </span>, <span style="color: red">Transaction amount: <%= transaction.balance %></span>
+                      <span style="float: right;">Validation Time:
+                        <%= transaction.validationTime %>
+                      </span>
+
                     </h4>
                     <h4>Transaction Hash: <%= transaction.transactionHash %>
                     </h4>

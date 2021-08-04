@@ -3,6 +3,44 @@
 
     <body>
         <%- include("nav.html") %>
+            <div class="chatParent">
+                <div>
+                    <h2>New Message on Blockchain</h2>
+                    <form action="/chat" method="POST">
+                        <label class="message">Your Message</label>
+                        <input type="text" class="message" name="newMessage" required>
+                        <button>Send</button>
+                    </form>
+                </div>
+                <div>
+                    <h2>Messages on Blockchain</h2>
+                    <ul class="transactionList">
+                        <!-- slice().reverse() can slow down the server. --->
+                        <% transactions.slice().reverse().forEach((transaction)=> {%>
+                            <% if(Number.isInteger(transaction.balance)===false ) { %>
+                                <li id="transactionBlock">
+                                    <h4><span style="color:red">
+                                            <%= transaction.source %>
+                                        </span> <span style="color: red"> says: <%= transaction.balance %>
+                                        </span>
+                                        <span style="float: right;"> Validation Time:
+                                            <%= transaction.validationTime %>
+                                        </span>
+
+                                    </h4>
+                                    <h4>Transaction Hash: <%= transaction.transactionHash %>
+                                    </h4>
+                                </li>
+                                <% } %>
+                                    <% }) %>
+                    </ul>
+
+                </div>
+
+
+
+            </div>
+
 
     </body>
 

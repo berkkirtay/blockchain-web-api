@@ -1,4 +1,4 @@
-from blockchainChat import *
+from blockchain import *
 from save import *
 import sys
 
@@ -11,7 +11,7 @@ textToBeSent = str(sys.argv[2])
 block2 = loadBlock()
 wallets = loadWallets()
 
-block2.addText(textTransactions(
+block2.addText(transaction(
     sourceAddress, "TOALL", textToBeSent))
 
 block2.handleTransaction("null")

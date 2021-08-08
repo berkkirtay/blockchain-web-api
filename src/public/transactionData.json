@@ -4,197 +4,99 @@
             "source": "null",
             "destination": "null",
             "balance": 0,
-            "transactionHash": "646e2e7afa4f0b2f4eecc8ebd34cda124e778d0ee8a55868b22ae7a24eaeeb47",
-            "validationTime": "08:22:01"
+            "transactionHash": "260fe248547f522224c6270163353b3b99c08676fc9c8b7b946d9ca68eab254a",
+            "validationTime": "18:01:31"
         },
         {
-            "source": "berk2",
-            "destination": "TOALL",
-            "balance": "selam",
-            "transactionHash": "7f1863f75878630501b6d82b71468e775a277b5270bbf7f0d39d0817d0199b5a",
-            "validationTime": "08:23:44"
+            "source": "null",
+            "destination": "berk",
+            "balance": 500000,
+            "transactionHash": "0071e5feab540508446f1dc49d66a886627a5ba4d6d1163e2564380307883493",
+            "validationTime": "18:02:44"
         },
         {
             "source": "null",
             "destination": "null",
             "balance": 0,
-            "transactionHash": "646e2e7afa4f0b2f4eecc8ebd34cda124e778d0ee8a55868b22ae7a24eaeeb47",
-            "validationTime": "08:22:01"
+            "transactionHash": "260fe248547f522224c6270163353b3b99c08676fc9c8b7b946d9ca68eab254a",
+            "validationTime": "18:01:31"
         },
         {
-            "source": "berk2",
-            "destination": "TOALL",
-            "balance": "selam",
-            "transactionHash": "7f1863f75878630501b6d82b71468e775a277b5270bbf7f0d39d0817d0199b5a",
-            "validationTime": "08:23:44"
+            "source": "null",
+            "destination": "berk",
+            "balance": 500000,
+            "transactionHash": "0071e5feab540508446f1dc49d66a886627a5ba4d6d1163e2564380307883493",
+            "validationTime": "18:02:44"
         },
         {
             "source": "null",
             "destination": "null",
             "balance": 4,
-            "transactionHash": "e50f7d43d3648df42c264046527fe90f72c6fd79d4170e92b7a83e678b743231",
-            "validationTime": "08:23:44"
+            "transactionHash": "94df1132d2a3517731bd7da4761fcfb8a359d53bca21aeea1e01608e36376395",
+            "validationTime": "18:02:44"
         },
         {
-            "source": "berk2",
-            "destination": "TOALL",
-            "balance": "hi",
-            "transactionHash": "02c33a2af606fc9613dd8bb9f2ef9f724a27c6d088a5f287f59032e363870f16",
-            "validationTime": "08:23:53"
-        },
-        {
-            "source": "null",
-            "destination": "null",
-            "balance": 4,
-            "transactionHash": "2773de190fa39d75059b7ff65ed4189e7e02da3353ef5b3374a9316682d5d0c6",
-            "validationTime": "08:23:53"
-        },
-        {
-            "source": "null",
-            "destination": "berk2",
-            "balance": 1000000000000,
-            "transactionHash": "fd69e2fbc46349cb5601c72b6f3a38dbcd8d134579aa005ca130ea2f4b2d93f6",
-            "validationTime": "08:24:35"
-        },
-        {
-            "source": "null",
-            "destination": "null",
-            "balance": 4,
-            "transactionHash": "d207fc208ff712ce7e85c6b76a029dc36ec539d396d9bbb6bfbe4aae9e258bdb",
-            "validationTime": "08:24:35"
-        },
-        {
-            "source": "null",
-            "destination": "berk2",
-            "balance": 321321321321321,
-            "transactionHash": "5c510ab8eb93bfd12bea32086c065c877b82dfb64281b5020cfc2050b801847d",
-            "validationTime": "08:25:08"
-        },
-        {
-            "source": "null",
-            "destination": "null",
-            "balance": 4,
-            "transactionHash": "5f27bd333ebb220046b1606e63fa38c978ba005853fdc2e23cc0c9c5d8795f79",
-            "validationTime": "08:25:08"
-        },
-        {
-            "source": "null",
+            "source": "berk",
             "destination": "someone",
-            "balance": 21132132321,
-            "transactionHash": "34a6dfe1670b74481c6a3995a467362a07670f85b7ab8a93169c3af942d88618",
-            "validationTime": "08:25:13"
+            "balance": 10000,
+            "transactionHash": "797dfc3141a5212e2dfc5289a13632912fbf637fdd47300c90973043740dba05",
+            "validationTime": "18:03:12"
         },
         {
             "source": "null",
             "destination": "null",
             "balance": 4,
-            "transactionHash": "f96a69afdf3e46795b69e9c944221f3663b13f00f73d05d961971423199781e7",
-            "validationTime": "08:25:13"
+            "transactionHash": "18c7846573d670ec2896c31b3a133a499f79633c67fecace7c18fc4cddd1b03d",
+            "validationTime": "18:03:12"
+        },
+        {
+            "source": "berk",
+            "destination": "TOALL",
+            "balance": "I sent 10000 coins to someone.",
+            "transactionHash": "600793f1f5269113bfa51be444caa43f2e3e87fcf94e57636021ac92b6f66385",
+            "validationTime": "18:03:34"
+        },
+        {
+            "source": "null",
+            "destination": "null",
+            "balance": 4,
+            "transactionHash": "3b737f658ddd14d9551e1e44e62df5969c6f76a904990ce311cc719582f79336",
+            "validationTime": "18:03:34"
+        },
+        {
+            "source": "berk",
+            "destination": "berk",
+            "balance": 100000,
+            "transactionHash": "0e0d5b91e9cb42b6921a63bcc0c61c90f284568b6ef0322864fd8b307475071e",
+            "validationTime": "18:03:45"
+        },
+        {
+            "source": "null",
+            "destination": "null",
+            "balance": 4,
+            "transactionHash": "57ccc23c1cc262e2cdf8620b593b05c4520aaaba195093735c72cfd08952e78f",
+            "validationTime": "18:03:45"
+        },
+        {
+            "source": "berk",
+            "destination": "berk2",
+            "balance": 90000,
+            "transactionHash": "979ecd12683a4d3f9082ed03e192f423b47e721035de63c44c8511dd0f9096b4",
+            "validationTime": "18:04:05"
+        },
+        {
+            "source": "null",
+            "destination": "null",
+            "balance": 4,
+            "transactionHash": "0b1d8da14ae953bd591495fa947c7054304eb4234e48c5bdbdd661644ca9d0aa",
+            "validationTime": "18:04:05"
         },
         {
             "source": "someone",
-            "destination": "berk2",
-            "balance": 10000000,
-            "transactionHash": "7d43ff13832e487ee99b5c4b38ff8a828e4b14810a890b61f5caac49be27aeaf",
-            "validationTime": "08:27:18"
-        },
-        {
-            "source": "null",
-            "destination": "null",
-            "balance": 4,
-            "transactionHash": "291135c5cd3ece9a7c41f333fe4b35ad79bec05ad1215db9a660501986d3d1af",
-            "validationTime": "08:27:18"
-        },
-        {
-            "source": "someone",
-            "destination": "berk2",
-            "balance": 100000000,
-            "transactionHash": "333a48fb7e298565185520b8b091316b00b7870e9da378a94bbba84d895ef50d",
-            "validationTime": "08:33:19"
-        },
-        {
-            "source": "null",
-            "destination": "null",
-            "balance": 4,
-            "transactionHash": "601465056a461c6d1d9933a1d06188e5411c89daa20a2e56215a39616ff277fc",
-            "validationTime": "08:33:19"
-        },
-        {
-            "source": "berk2",
             "destination": "TOALL",
             "balance": "test",
-            "transactionHash": "d3f15bf9d1c51d881ea24a51f0e6795403285acff2731b30061a2481a553bdf4",
-            "validationTime": "08:33:35"
-        },
-        {
-            "source": "null",
-            "destination": "null",
-            "balance": 4,
-            "transactionHash": "21ddc2b54bfb7f031f1631432cf61c5818e54f470e235999622053bafb1791bc",
-            "validationTime": "08:33:35"
-        },
-        {
-            "source": "berk2",
-            "destination": "kimse",
-            "balance": 1000,
-            "transactionHash": "b86a4f8dbdd1f97b33b6bcf527e6e72531ac54378a1a09fa8d1dbda34635f003",
-            "validationTime": "08:33:49"
-        },
-        {
-            "source": "null",
-            "destination": "null",
-            "balance": 4,
-            "transactionHash": "0c921b6ba6a967d60af6b4cb815e94d389603ee34ab2030e1ae07cc0d990dc74",
-            "validationTime": "08:33:49"
-        },
-        {
-            "source": "someone",
-            "destination": "TOALL",
-            "balance": "test from someone!!!!",
-            "transactionHash": "1fab23d60d2cd8370b7d481b862eddab0d8a9c4b5ef6bf2b046dc8f18d78ffcd",
-            "validationTime": "11:01:47"
-        },
-        {
-            "source": "null",
-            "destination": "null",
-            "balance": 4,
-            "transactionHash": "dccea7b3ad4d8ef04a4382b66bbd19010f2b78673ef5b3bfefc96979e8534adf",
-            "validationTime": "11:01:47"
-        },
-        {
-            "source": "someone",
-            "destination": "TOALL",
-            "balance": "this is a test for max string lenght!! 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
-            "transactionHash": "244a9ef5e4290057a5fe2393b23ad5506eb032ccb637ae6d3e0c6ff5c02a340f",
-            "validationTime": "11:02:09"
-        },
-        {
-            "source": "null",
-            "destination": "null",
-            "balance": 4,
-            "transactionHash": "e0ae87c6b36f1058c215b87747c07325a185e6390d42a9605f339d5486ec171f",
-            "validationTime": "11:02:09"
-        },
-        {
-            "source": "someone",
-            "destination": "TOALL",
-            "balance": "this is the second test for max string lenght!!  00000000000000000000000000000000000000000000000000000000000000000000000000000 00000000000000000000000000000000000000000000000000000000000000000000000000000 00000000000000000000000000000000000000000000000000000000000000000000000000000 00000000000000000000000000000000000000000000000000000000000000000000000000000 00000000000000000000000000000000000000000000000000000000000000000000000000000 00000000000000000000000000000000000000000000000000000000000000000000000000000 00000000000000000000000000000000000000000000000000000000000000000000000000000 00000000000000000000000000000000000000000000000000000000000000000000000000000 00000000000000000000000000000000000000000000000000000000000000000000000000000 00000000000000000000000000000000000000000000000000000000000000000000000000000 00000000000000000000000000000000000000000000000000000000000000000000000000000 00000000000000000000000000000000000000000000000000000000000000000000000000000 00000000000000000000000000000000000000000000000000000000000000000000000000000",
-            "transactionHash": "3366880e8361c308635e6dedb24fa0b8115f960865851cb39abc0898a3029d5b",
-            "validationTime": "11:03:00"
-        },
-        {
-            "source": "null",
-            "destination": "null",
-            "balance": 4,
-            "transactionHash": "265425f77977e4ad3f102b4b1f2917fd8354fd38e8f866fa7db378a031b3df0a",
-            "validationTime": "11:03:00"
-        },
-        {
-            "source": "someone",
-            "destination": "berk2",
-            "balance": 10000000000,
-            "transactionHash": "71315ddc6573d6ff439b7272aa72b2092e8a8b6dbb7b75b46c67419229a7c912",
-            "validationTime": "11:03:11"
+            "transactionHash": "3c3f90123d317ba63cdc14d1d36dffd5ab5ec657e9990fe1f478aaf72f16865d",
+            "validationTime": "18:04:23"
         }
     ]
 }

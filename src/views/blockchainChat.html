@@ -19,9 +19,10 @@
                         <% transactions.slice().reverse().forEach((transaction)=> {%>
                             <% if(Number.isInteger(transaction.balance)===false ) { %>
                                 <li id="transactionBlock">
-                                    <h4><span style="color:red">
-                                            <%= transaction.source %>
-                                        </span> <span style="color: red"> says: <%= transaction.balance %>
+                                    <h4><span style="color:black">
+                                            <%= transaction.source %> says:
+                                        </span> <span style="color: red">
+                                            <%= transaction.balance %>
                                         </span>
                                         <span style="float: right;"> Validation Time:
                                             <%= transaction.validationTime %>
@@ -43,5 +44,6 @@
 
 
     </body>
+    <%- include("footer.html") %>
 
-    </html>
+        </html>

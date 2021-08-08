@@ -1,0 +1,10 @@
+<footer>
+    <% if(isUserSpecified==true) { %>
+        <p>Current user: <%= user.name %>
+        </p>
+        <p>Balance: <%= user.balance %>
+        </p>
+        <% } else { %>
+            <p>Hey there!</p>
+            <% } %>
+</footer>

@@ -4,25 +4,19 @@
             "name": "genesis-wallet",
             "balance": 0,
             "publicAddress": "cc8ce0e9d5c800b2bdc5daab33f7bad3b75d8da6c682669877b75bd8dbd9d6d3",
-            "privateAddress": "6e936c6dde7abe11bf72323428bb57d7cbac135d62c6ea9f75cd99ba4aad3a38"
+            "privateAddress": "ae590660561a5302e3afa974b48fceceec9cd2e6083458515691d95046a09e11"
         },
         {
             "name": "berk",
-            "balance": 0,
+            "balance": 900000,
             "publicAddress": "7a183d8629b0c640adb76efd475fb8749627f8b1890674b0d947107d28562075",
-            "privateAddress": "6526741f4dec1f3bf51f172e1ab0776fd0d4eaed75d21f3b881bfe77fb131fbb"
-        },
-        {
-            "name": "berk2",
-            "balance": 322331431320321,
-            "publicAddress": "583fa7b4f428e6e3b56ce017ba57f30b55562111a7a29aa62281452a94dade18",
-            "privateAddress": "5edf3c77aee4ec826eada7b1f00c3f45be782e0ab78429fc0372ba2dfadb318a"
+            "privateAddress": "a6da675e7ff3120d19cfa0dbd6df3d79bb029094799f289c0f413671312ab19c"
         },
         {
             "name": "someone",
-            "balance": 11022132321,
+            "balance": 10000,
             "publicAddress": "2a59d59e3809f827ce709d3815e3950eef4a6a93af5557a93a7fdfba71460843",
-            "privateAddress": "871d4ceab6bd4ef9b27eaf030ac6619bc12f14e85cbdccc8a559d8dc747508b2"
+            "privateAddress": "598851240f4355b74525dc5f69b26e13803bc2fe3d04ded50ac367e1aebaf1a6"
         }
     ]
 }

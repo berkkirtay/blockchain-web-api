@@ -1,5 +1,19 @@
 body {
-background-color: rgb(204, 204, 204);
+  background-color: rgb(190, 190, 190);
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  background: grey;
+  border: 2px solid red;
+  float: right;
+}
+
+footer p {
+  color: white;
+  margin: 10px;
 }
 
 ul.nav {
@@ -7,8 +21,7 @@ ul.nav {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: rgb(48, 44, 44);
-  
+  background-color: rgb(48, 44, 44);  
 }
 
 li.nav, #myWalletButton, #createWalletButton {

@@ -9,12 +9,12 @@ sourceAddress = sys.argv[1]
 destAddress = sys.argv[2]
 transactionAmount = int(sys.argv[3])
 
-# We are assuming "berk" is the admin of this blockchain and
+# We are assuming "admin" is the admin of this blockchain and
 # can make transactions forcefully. This option is only for tests.
 
 transactionFlag = True
 
-if sourceAddress == "berk":
+if sourceAddress == "admin":
     block1.forceTransaction(transaction(
         "null", destAddress, transactionAmount))
 else:

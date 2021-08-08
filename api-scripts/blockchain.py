@@ -2,6 +2,7 @@
 # There can be many bugs or wrong approaches,
 # please check the potential bugs before using!
 
+
 from hashlib import sha256
 from os import error
 from datetime import datetime
@@ -77,7 +78,8 @@ class blockchain():
         # First transaction of the blockchain.
         self.transactions = genericTransactions
         self.validationFlag = True
-        return block(sha256(randomKey.encode('utf-8')).hexdigest(), self.hashDifficulty, genericTransactions)
+        return block(sha256(
+            randomKey.encode('utf-8')).hexdigest(), self.hashDifficulty, genericTransactions)
 
     def getCurrentBlock(self):
         return self.blockchain[len(self.blockchain) - 1]
@@ -179,6 +181,17 @@ class blockchain():
         return availableCoins
 
 
+class digitalSignature:
+    def __init__(self):
+        pass
+
+    def signTransaction(self, transactionHash, publicKey):
+        return sha256((transactionHash + publicKey).encode('utf-8')).hexdigest()
+
+    def validateTransaction(self, encryptedTransactionHash, privateKey):
+        return sha256((encryptedTransactionHash + privateKey).encode('utf-8')).hexdigest()
+
+
 # Transaction class saves source and destination
 # of the transfers with a validation.
 
@@ -188,6 +201,7 @@ class transaction():
     coins = 0
     validationTime = None
     transactionHash = ''
+    cryptoKeyPair = {'publicKey': 0, 'privateKey': 0}
 
     def __init__(self, source, destination, coins):
         self.source = source

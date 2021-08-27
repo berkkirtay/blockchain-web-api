@@ -11,7 +11,7 @@ I implement this web-api as I learn about web development. So, it is not that fa
 
 ### Web-api Example
 
-- ![Enc1](https://github.com/berkkirtay/blockchain-web-api/web-api-photo/example1.PNG)
+![Enc1](https://raw.githubusercontent.com/berkkirtay/blockchain-web-api/main/web-api-photo/example1.PNG)
 
 
 ## Usage

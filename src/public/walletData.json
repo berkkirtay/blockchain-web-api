@@ -8,13 +8,13 @@
         },
         {
             "name": "berk",
-            "balance": 900000,
+            "balance": 820497,
             "publicAddress": "7a183d8629b0c640adb76efd475fb8749627f8b1890674b0d947107d28562075",
             "privateAddress": "a6da675e7ff3120d19cfa0dbd6df3d79bb029094799f289c0f413671312ab19c"
         },
         {
             "name": "someone",
-            "balance": 10000,
+            "balance": 89503,
             "publicAddress": "2a59d59e3809f827ce709d3815e3950eef4a6a93af5557a93a7fdfba71460843",
             "privateAddress": "598851240f4355b74525dc5f69b26e13803bc2fe3d04ded50ac367e1aebaf1a6"
         }

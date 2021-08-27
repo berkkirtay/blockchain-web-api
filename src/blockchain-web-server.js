@@ -27,6 +27,7 @@ app.set('view engine', 'html');
 app.set('views', path.join(__dirname, 'views'));
 
 var fs = require('fs');
+const { SSL_OP_EPHEMERAL_RSA } = require('constants');
 
 var wallets = [];
 var transactionData = [];
@@ -154,15 +155,10 @@ app.post('/createWallet', async (req, res) => {
     const publicName = req.body.createWallet.publicName;
     const publicPass = req.body.createWallet.publicPass;
     const python = await spawn('python', ['../api-scripts/createWallet.py', publicName, publicPass]);
-    /* python.stdout.on('data', function (data) {
-         console.log(data.toString());
-     })*/
-    // insertToDB(publicName, publicPass);
 
     console.log("New wallet created-> " + publicName);
 
     await readWallet();
-
     await refreshCurrentUser(publicName, req.session);
 
     return res.redirect('/');
@@ -284,7 +280,6 @@ app.post('/chat', async (req, res) => {
         ['../api-scripts/handleChat.py', currentUser.name, textToBeSent]);
 
     return res.redirect('/chat');
-
 })
 
 // If server receives an undefined request, it will return a 404 error.

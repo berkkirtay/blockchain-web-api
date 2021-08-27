@@ -27,7 +27,6 @@ app.set('view engine', 'html');
 app.set('views', path.join(__dirname, 'views'));
 
 var fs = require('fs');
-const { SSL_OP_EPHEMERAL_RSA } = require('constants');
 
 var wallets = [];
 var transactionData = [];

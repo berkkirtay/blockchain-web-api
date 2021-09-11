@@ -19,7 +19,7 @@
 
         <div class="transaction">
           <h2>Transaction History</h2>
-          <ul class="transactionList">
+          <ul id="transactionList">
             <!-- slice().reverse() can slow down the server. --->
             <% transactions.slice().reverse().forEach((transaction)=> {%>
               <% if(transaction.source==='null' || transaction.destination==='null' ) { %>

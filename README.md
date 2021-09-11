@@ -5,9 +5,8 @@ I implement this web-api as I learn about web development. So, it is not that fa
 ### The components I used: 
 - The blockchain library I wrote and its API.
 - Node.js express for client requests
-- Ejs and CSS for frontend
-- Json files for basic local databases
-- MongoDB for express-session
+- Ejs and CSS for front end
+- MongoDB for blockchain database and express-session
 
 ### Web-api Example
 

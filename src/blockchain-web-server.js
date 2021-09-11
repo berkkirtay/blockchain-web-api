@@ -1,6 +1,7 @@
 const express = require('express');
 
 //const spawn = require('child_process').spawn;
+// To enable promises for child processes, we can use await-spawn.
 const spawn = require('await-spawn');
 
 const app = express();
@@ -13,12 +14,6 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(express.json());
 
-// Session 
-const Session = require('./session');
-const currentSession = new Session(app);
-currentSession.initializeSession();
-
-
 var path = require('path');
 
 // To keep using html files with ejs engine.
@@ -26,60 +21,43 @@ app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
 app.set('views', path.join(__dirname, 'views'));
 
-var fs = require('fs');
+
+// Session 
+const Session = require('./session');
+const currentSession = new Session(app);
+currentSession.initializeSession();
+
+
+// DB
 
 var wallets = [];
 var transactionData = [];
 var blocks = [];
 
-async function readWallet() {
-    fs.readFile('.//public/walletData.json', 'utf8', async (err, data) => {
-        if (err) {
-            throw err;
-        }
-        wallets = await JSON.parse(data);
-    });
-
-    fs.readFile('.//public/transactionData.json', 'utf8', async (err, data) => {
-        if (err) {
-            throw err;
-        }
-        transactionData = await JSON.parse(data);
-    });
-
-    fs.readFile('.//public/blockchainData.json', 'utf8', async (err, data) => {
-        if (err) {
-            throw err;
-        }
-        blocks = await JSON.parse(data);
-    });
+const db = require('./database');
+async function loadDatabase() {
+    await db.getData();
+    wallets = db.getWallets();
+    transactionData = db.getTransactionData();
+    blocks = db.getBlocks();
 }
 
-readWallet();
 
-/*
-app.use(async (req, res, next) => {
-    await readWallet();
-    next();
-})
-*/
-
-// IO method should be changed to get a better performance.
 async function refreshCurrentUser(publicName, session) {
     if (publicName === "null") {
         session.isUserSpecified = false;
         session.currentUser = 'undefined';
     }
     else {
-        await assignUser(publicName, session);
+        await assignUser(publicName, session)
     }
 }
 
 async function assignUser(publicName, session) {
-    for (var i = 0; i < wallets.users.length; i++) {
-        if (wallets.users[i].name === publicName) {
+    for (var i = 0; i < wallets.length; i++) {
+        if (wallets[i].name === publicName) {
             session.isUserSpecified = true;
-            session.currentUser = wallets.users[i];
+            session.currentUser = wallets[i];
             return;
         }
     }
@@ -95,11 +73,10 @@ app.use((req, res, next) => {
     next();
 })
 
-
 //Home page
 
 app.get('/', async (req, res) => {
-    await readWallet();
+    await loadDatabase();
 
     var isUserSpecified = currentSession.getUserStatus(req.session);
     var currentUser = currentSession.getCurrentUser(req.session);
@@ -136,7 +113,7 @@ app.post('/', async (req, res) => {
         });
     }
     else {
-        return res.redirect('/');
+        return res.redirect('/users');
     }
 })
 
@@ -153,30 +130,32 @@ app.get('/createWallet', (req, res) => {
 app.post('/createWallet', async (req, res) => {
     const publicName = req.body.createWallet.publicName;
     const publicPass = req.body.createWallet.publicPass;
-    const python = await spawn('python', ['../api-scripts/createWallet.py', publicName, publicPass]);
+    const python = await spawn('python',
+        ['../api-scripts/createWallet.py', publicName, publicPass]);
 
     console.log("New wallet created-> " + publicName);
 
-    await readWallet();
+    await loadDatabase();
     await refreshCurrentUser(publicName, req.session);
 
-    return res.redirect('/');
+    res.redirect('/');
 })
 
 app.get('/users', async (req, res) => {
     var isUserSpecified = currentSession.getUserStatus(req.session);
     var currentUser = currentSession.getCurrentUser(req.session);
 
-    await readWallet();
+    await loadDatabase();
+
     res.render("users", {
-        title: "Users", users: wallets.users,
+        title: "Users", users: wallets,
         isUserSpecified, user: currentUser
     });
-})
+});
 
-app.get('/users/:id', (req, res) => {
+app.get('/users/:id', async (req, res) => {
     const id = req.params.id;
-    wallets.users.find((user) => {
+    wallets.find((user) => {
         if (user.name === id) {
             return res.render('users', {
                 title: id, users: [], user: user,
@@ -188,28 +167,28 @@ app.get('/users/:id', (req, res) => {
 
 app.get('/users/:id/delete', async (req, res) => {
     const id = req.params.id;
-    const python = await spawn('python', ['../api-scripts/deleteWallet.py', id]);
+    const python = await spawn('python',
+        ['../api-scripts/deleteWallet.py', id]);
     console.log("Wallet " + id + " is deleted.");
-    // deleteUserFromDB(id);
-    return res.redirect('/users');
+    res.redirect('/users');
 })
 
 app.get('/exit', (req, res) => {
     currentSession.destroy(req.session);
-    return res.redirect('/');
+    res.redirect('/');
 })
 
 //Transactions
-app.get('/transactions', (req, res) => {
+app.get('/transactions', async (req, res) => {
     var isUserSpecified = currentSession.getUserStatus(req.session);
     var currentUser = currentSession.getCurrentUser(req.session);
 
     if (isUserSpecified) {
-        readWallet();
-        refreshCurrentUser(currentUser.name, req.session);
+        await loadDatabase();
+        await refreshCurrentUser(currentUser.name, req.session);
         res.render("transactions", {
             title: "Transactions", isUserSpecified,
-            user: currentUser, transactions: transactionData.transactions
+            user: currentUser, transactions: transactionData
         });
     }
     else {
@@ -229,18 +208,17 @@ app.post('/transactions', async (req, res) => {
     /* python.stdout.on('data', function (data) {
         console.log(data.toString());
     })*/
-
-    return res.redirect('/transactions');
+    res.redirect('/transactions');
 })
 
 // Requests about blockchain status/demonstration.
 
-app.get('/blockchain', (req, res) => {
+app.get('/blockchain', async (req, res) => {
     var isUserSpecified = currentSession.getUserStatus(req.session);
     var currentUser = currentSession.getCurrentUser(req.session);
 
-    readWallet();
-    refreshCurrentUser(currentUser.name, req.session);
+    await loadDatabase();
+    await refreshCurrentUser(currentUser.name, req.session);
 
     res.render("blockchainStatus", {
         title: "Blockchain",
@@ -249,9 +227,10 @@ app.get('/blockchain', (req, res) => {
 })
 
 app.get('/transactionTest', async (req, res) => {
-    const python = await spawn('python', ['../api-scripts/transactionTest.py']);
+    const python = await spawn('python',
+        ['../api-scripts/transactionTest.py']);
     console.log("Test is completed.");
-    return res.redirect('/');
+    res.redirect('/');
 
 })
 
@@ -259,12 +238,12 @@ app.get('/chat', async (req, res) => {
     var isUserSpecified = currentSession.getUserStatus(req.session);
     var currentUser = currentSession.getCurrentUser(req.session);
 
-    readWallet();
-    refreshCurrentUser(currentUser.name, req.session);
+    await loadDatabase();
+    await refreshCurrentUser(currentUser.name, req.session);
 
     res.render("blockchainChat", {
         title: "Chat", isUserSpecified,
-        user: currentUser, transactions: transactionData.transactions
+        user: currentUser, transactions: transactionData
     });
 })
 
@@ -274,11 +253,11 @@ app.post('/chat', async (req, res) => {
     if (currentUser === "undefined") {
         return res.redirect('/chat');
     }
-
     const python = await spawn('python',
         ['../api-scripts/handleChat.py', currentUser.name, textToBeSent]);
 
-    return res.redirect('/chat');
+    await loadDatabase();
+    res.redirect('/chat');
 })
 
 // If server receives an undefined request, it will return a 404 error.

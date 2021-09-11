@@ -144,7 +144,7 @@ button{
   margin: 1px;
 }
 
-.transactionList {
+#transactionList {
   list-style-type: none;
   padding: 0;
 }

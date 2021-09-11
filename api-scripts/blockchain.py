@@ -56,7 +56,7 @@ class block():
         self.hashDifficulty = hashDifficulty
         self.previousBlockHash = previousBlockHash
         self.blockTransactions = blockTransactions
-        self.validationTime = datetime.now().strftime("%H:%M:%S")
+        self.validationTime = datetime.now().ctime()
         self.blockHash = self.generateBlockHash()
         self.proofOfWork()
 
@@ -256,7 +256,7 @@ class transaction():
         self.setTransaction()
 
     def setTransaction(self):
-        self.validationTime = datetime.now().strftime("%H:%M:%S")
+        self.validationTime = datetime.now().ctime()
         self.generateTransactionHash()
 
         signer = digitalSignature()
@@ -265,7 +265,8 @@ class transaction():
 
     def generateTransactionHash(self):
         newHash = self.source + self.destination + \
-            str(self.coins) + self.validationTime
+            str(self.coins) + self.validationTime + \
+            random.choice(string.ascii_lowercase)
         self.transactionHash = sha1(newHash.encode('utf-8')).hexdigest()
 
 
@@ -356,7 +357,7 @@ class walletChecker():
 
     def addWallet(self, newWallet):
         for wallet in self.wallets:
-            if wallet.publicAddress == newWallet.publicAddress:
+            if wallet.ownerName == newWallet.ownerName:
                 print("You can't use an existed wallet name!")
                 return
 
@@ -374,7 +375,7 @@ class database():
     creationDate = None
 
     def __init__(self):
-        self.creationDate = datetime.now().strftime("%H:%M:%S")
+        self.creationDate = datetime.now().ctime()
 
     def saveDatabase(self, blockchain, wallets, path):
         save1 = open(path + 'blockchainData1', 'wb')

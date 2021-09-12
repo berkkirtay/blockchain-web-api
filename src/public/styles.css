@@ -1,5 +1,6 @@
 body {
   background-color: rgb(190, 190, 190);
+  background-image: linear-gradient(to right, rgba(0, 238, 255, 0), rgb(105, 193, 209));
 }
 
 footer {
@@ -140,6 +141,7 @@ button{
 
 #transactionBlock {
   border: 1px solid black;
+  border-radius: 15px;
   padding: 5px;
   margin: 1px;
 }

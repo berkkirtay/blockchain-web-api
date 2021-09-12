@@ -28,9 +28,11 @@
                         <h3>Private Key: <%= user.privateAddress %>
                         </h3>
                         </p>
-                        <button id="delete"><a href=<%="/users/" + user.name + "/delete" %>>Delete this
-                                wallet</a></button>
-                        <% } %>
+                        <% if(isOwner===true) {%>
+                            <button id="delete"><a href=<%="/users/" + user.name + "/delete" %>>Delete this
+                                    wallet</a></button>
+                            <% } %>
+                                <% } %>
             </div>
 
     </body>

@@ -27,6 +27,14 @@ const Session = require('./session');
 const currentSession = new Session(app);
 currentSession.initializeSession();
 
+var isUserSpecified;
+var currentUser;
+
+async function refreshSession(req) {
+    isUserSpecified = currentSession.getUserStatus(req.session);
+    currentUser = currentSession.getCurrentUser(req.session);
+}
+
 
 // DB
 
@@ -63,13 +71,17 @@ async function assignUser(publicName, session) {
     }
 }
 
-app.use((req, res, next) => {
+
+// Middleware for client requests
+
+app.use(async (req, res, next) => {
     console.log("New Request ");
     console.log('Host name: ' + req.hostname);
     console.log('Request url: ' + req.path);
     console.log('Request http method: ' + req.method);
     console.log(req.session);
     console.log('--------------------------------------');
+    await refreshSession(req)
     next();
 })
 
@@ -78,8 +90,6 @@ app.use((req, res, next) => {
 app.get('/', async (req, res) => {
     await loadDatabase();
 
-    var isUserSpecified = currentSession.getUserStatus(req.session);
-    var currentUser = currentSession.getCurrentUser(req.session);
 
     if (isUserSpecified === true) {
         res.render("index", {
@@ -88,7 +98,7 @@ app.get('/', async (req, res) => {
         });
     }
     else if (isUserSpecified === undefined || isUserSpecified === false) {
-        refreshCurrentUser("null", req.session);
+        await refreshCurrentUser("null", req.session);
         res.render("index", {
             title: "Home", isUserSpecified: false,
             user: "undefined", alert: false
@@ -102,9 +112,7 @@ app.post('/', async (req, res) => {
     // Handle privatekey!
 
     await refreshCurrentUser(publicName, req.session);
-
-    var isUserSpecified = currentSession.getUserStatus(req.session);
-    var currentUser = currentSession.getCurrentUser(req.session);
+    await refreshSession(req);
 
     if (isUserSpecified === false) {
         return res.render("index", {
@@ -113,14 +121,13 @@ app.post('/', async (req, res) => {
         });
     }
     else {
-        return res.redirect('/users');
+        return res.redirect('/');
     }
 })
 
 // Users and wallet operations.
 
 app.get('/createWallet', (req, res) => {
-    var currentUser = currentSession.getCurrentUser(req.session);
     res.render("createWallet", {
         title: "Create wallet",
         isUserSpecified: false, user: currentUser
@@ -142,24 +149,24 @@ app.post('/createWallet', async (req, res) => {
 })
 
 app.get('/users', async (req, res) => {
-    var isUserSpecified = currentSession.getUserStatus(req.session);
-    var currentUser = currentSession.getCurrentUser(req.session);
-
     await loadDatabase();
-
     res.render("users", {
         title: "Users", users: wallets,
-        isUserSpecified, user: currentUser
+        isUserSpecified, user: currentUser, isOwner: false
     });
 });
 
 app.get('/users/:id', async (req, res) => {
     const id = req.params.id;
+    var owner = false;
+    if (id == currentUser.name) {
+        owner = true
+    }
     wallets.find((user) => {
         if (user.name === id) {
             return res.render('users', {
                 title: id, users: [], user: user,
-                isUserSpecified: currentSession.getUserStatus(req.session)
+                isUserSpecified: isUserSpecified, isOwner: owner
             });
         }
     });
@@ -167,22 +174,24 @@ app.get('/users/:id', async (req, res) => {
 
 app.get('/users/:id/delete', async (req, res) => {
     const id = req.params.id;
-    const python = await spawn('python',
-        ['../api-scripts/deleteWallet.py', id]);
-    console.log("Wallet " + id + " is deleted.");
-    res.redirect('/users');
+    if (id === currentUser.name) {
+        const python = await spawn('python',
+            ['../api-scripts/deleteWallet.py', id]);
+        console.log("Wallet " + id + " is deleted.");
+        res.redirect('/users');
+    }
+    else {
+        console.log("Error! Only owners can delete their wallet!");
+        res.render("users", {
+            title: "Users", users: wallets,
+            isUserSpecified, user: currentUser, isOwner: false
+        });
+    }
 })
 
-app.get('/exit', (req, res) => {
-    currentSession.destroy(req.session);
-    res.redirect('/');
-})
 
 //Transactions
 app.get('/transactions', async (req, res) => {
-    var isUserSpecified = currentSession.getUserStatus(req.session);
-    var currentUser = currentSession.getCurrentUser(req.session);
-
     if (isUserSpecified) {
         await loadDatabase();
         await refreshCurrentUser(currentUser.name, req.session);
@@ -200,8 +209,6 @@ app.post('/transactions', async (req, res) => {
     const publicAddress = req.body.transactions.publicAddress;
     const coinAmount = req.body.transactions.coinAmount;
 
-    var currentUser = currentSession.getCurrentUser(req.session);
-
     const python = await spawn('python',
         ['../api-scripts/handleTransaction.py', currentUser.name, publicAddress, coinAmount]);
 
@@ -214,9 +221,6 @@ app.post('/transactions', async (req, res) => {
 // Requests about blockchain status/demonstration.
 
 app.get('/blockchain', async (req, res) => {
-    var isUserSpecified = currentSession.getUserStatus(req.session);
-    var currentUser = currentSession.getCurrentUser(req.session);
-
     await loadDatabase();
     await refreshCurrentUser(currentUser.name, req.session);
 
@@ -235,9 +239,6 @@ app.get('/transactionTest', async (req, res) => {
 })
 
 app.get('/chat', async (req, res) => {
-    var isUserSpecified = currentSession.getUserStatus(req.session);
-    var currentUser = currentSession.getCurrentUser(req.session);
-
     await loadDatabase();
     await refreshCurrentUser(currentUser.name, req.session);
 
@@ -248,7 +249,6 @@ app.get('/chat', async (req, res) => {
 })
 
 app.post('/chat', async (req, res) => {
-    var currentUser = currentSession.getCurrentUser(req.session);
     const textToBeSent = req.body.newMessage;
     if (currentUser === "undefined") {
         return res.redirect('/chat');
@@ -260,12 +260,17 @@ app.post('/chat', async (req, res) => {
     res.redirect('/chat');
 })
 
+app.get('/exit', (req, res) => {
+    currentSession.destroy(req.session);
+    res.redirect('/');
+})
+
 // If server receives an undefined request, it will return a 404 error.
 app.use('/', (req, res) => {
     return res.status(404).render("404",
-        { title: "404", user: "undefined", isUserSpecified: false });
+        { title: "404", user: currentUser, isUserSpecified: isUserSpecified });
 })
 
 app.listen(8000, () => {
-    console.log('Listening')
+    console.log('Listening on :8000')
 });

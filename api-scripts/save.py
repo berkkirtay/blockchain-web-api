@@ -21,9 +21,6 @@ def save(block, wallets):
         }
         walletJSON["users"].append(newUser)
 
-  #  with open('./public/walletData.json', 'w', encoding='utf-8') as f:
-   #     json.dump(walletJSON, f, ensure_ascii=False, indent=4)
-
     transactions = {
         "transactions": []
     }
@@ -55,12 +52,6 @@ def save(block, wallets):
             }
             transactions["transactions"].append(newTransaction)
 
-   # with open('./public/transactionData.json', 'w', encoding='utf-8') as f:
-    #    json.dump(transactions, f, ensure_ascii=False, indent=4)
-
-  #  with open('./public/blockchainData.json', 'w', encoding='utf-8') as f:
-   #     json.dump(blocks, f, ensure_ascii=False, indent=4)
-
     saveToDB(walletJSON.copy(), blocks.copy(), transactions.copy())
 
 
@@ -69,6 +60,9 @@ def saveToDB(wallets, blocks, transactions):
     db = cluster["BlockchainWebServer"]
 
     collection1 = db["UsersCollection"]
+    # We need to drop the collection since
+    # there could be deletions for wallets.
+    collection1.drop()
     for user in wallets["users"]:
         user.update({"_id": user["publicAddress"]})
         try:

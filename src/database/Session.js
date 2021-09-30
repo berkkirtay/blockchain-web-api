@@ -23,8 +23,10 @@ class Session {
             saveUninitialized: false,
             store: store,
             cookie: {
-                maxAge: 60 * 10000000
-            }
+                maxAge: 60 * 100000
+            },
+            currentUser: Object,
+            isUserSpecified: Boolean,
         }))
     }
 
@@ -45,6 +47,5 @@ class Session {
         currentSession.destroy();
     }
 }
-
 
 module.exports = Session;

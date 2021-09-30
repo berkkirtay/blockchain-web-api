@@ -1,14 +1,26 @@
 body {
+  margin: 5px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   background-color: rgb(190, 190, 190);
   background-image: linear-gradient(to right, rgba(0, 238, 255, 0), rgb(105, 193, 209));
 }
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
 
 footer {
   position: fixed;
   bottom: 0;
   right: 0;
-  background: grey;
-  border: 2px solid red;
+  background: rgb(36, 73, 109);
+  border: 2px solid rgb(17, 66, 116);
   float: right;
 }
 
@@ -22,44 +34,41 @@ ul.nav {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: rgb(48, 44, 44);  
+  background-color: rgb(36, 73, 109);  
 }
 
 li.nav, #myWalletButton, #createWalletButton {
   float: left;
-  border-right:1px solid #bbb;
 }
 
 #exitButton {
   float: right;
-  border-left:1px solid #bbb;
 }
 
 li.nav a, #myWalletButton a, #createWalletButton a, #exitButton a{
   display: block;
   color: white;
   text-align: center;
-  padding: 14px 16px;
+  padding: 35px 45px;
   text-decoration: none;
 }
 
 ul.userList {
   overflow: hidden;
+  max-width: 200px;
+  overflow:hidden;
 }
 
 li.userList {
-  margin-bottom: 10px;
+  text-decoration: none;
+  margin-bottom: 20px;
+  color:rgb(5, 95, 110);
 }
 
-li.userList a {
-  color: red;
-  text-align: center;
-  padding: 14px;
-}
 
 li.nav a:hover:not(.active), #createWalletButton a:hover:not(.active), 
 #myWalletButton a:hover:not(.active), #exitButton a:hover:not(.active) {
-  background-color: rgb(119, 119, 119);
+  background-color: rgb(5, 95, 110);
 }
 
 .active {
@@ -71,10 +80,11 @@ h2 {
     padding-bottom : 10px;
 }
 
-form{
-  max-width: 600px;
+#newTransaction, #createWallet{
+  max-width: 500px;
+  max-height: 1000px;
   margin: 0 auto;
-  margin-left: 20px;
+  justify-content: center;
 }
 
 input {
@@ -84,13 +94,13 @@ input {
   padding: 8px;
 }
 
-label{
+label {
   font-size: 1.2em;
   display: block;
   margin-bottom: 20px;
 }
 
-button{
+button {
   margin-top: 20px;
   background: #333;
   color: white;
@@ -101,42 +111,23 @@ button{
   margin-left: 10px;
 }
 
-#delete {
-  margin-top: 20px;
-  background: #333;
+#transactionButton {
+  float: right;
+  background: rgb(36, 73, 109);
   color: white;
   padding: 6px;
-  border: 0;
+  border: 1px solid rgb(17, 68, 119);
   font-size: 1.2em;
   cursor: pointer;
+  margin-left: 10px;
 }
 
-#delete a {
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
+#transactionButton:hover:not(.active) {
+  background-color: rgb(5, 95, 110);
 }
 
-.transactionParent{
-  border: 5px ;
-  padding: 10px;
-}
-
-.transaction {  
-  width: 40%;
-  float: left;
-  padding: 10px;
-  border: 5px solid red;
-}
-
-.transaction:first-child {
-  margin-right: 10px;
-}
-
-.transaction:last-child {
-  width: 55%;
+.active {
+  background-color: #04AA6D;
 }
 
 #transactionBlock {
@@ -151,20 +142,36 @@ button{
   padding: 0;
 }
 
+/* Blockhain status */
+
 #blockchainStatus {
+  padding: 20px;
+}
+
+#blockchainStatus-child {
+  width: 45%;
   float: left;
-  padding: 10px;
-  border: 5px solid red;
-  margin: 5px;
+  padding: 20px;
+}
+
+#block {
+  border: 2px solid rgb(53, 158, 243);
+  padding: 5%;
+  background-color: #1874be;
+  position: fixed;
 }
 
 #blockchainStatus ul {
   list-style-type: none ;
   padding: 0;
+  width: 80%;
 }
 
 #blockchainStatus li {
-  border: 1px solid black;
+  border: 1px solid rgb(78, 119, 207);
   padding: 5px;
-  margin: 1px;
+  margin: 10px;
 }
+
+
+

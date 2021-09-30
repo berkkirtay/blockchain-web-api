@@ -34,7 +34,7 @@ function loadDatabase() {
 }
 
 module.exports = {
-    getData: async function getData() {
+    loadDatabase: async function getData() {
         await loadDatabase()
             .then((result) => console.log("DB load is successful."))
             .catch((err) => console.log(err));
@@ -42,7 +42,7 @@ module.exports = {
     getWallets: function getWallets() {
         return wallets;
     },
-    getTransactionData: function getTransactionDatas() {
+    getTransactionData: function getTransactionData() {
         return transactionData;
     },
     getBlocks: function getBlocks() {

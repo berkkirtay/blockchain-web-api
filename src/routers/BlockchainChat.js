@@ -1,4 +1,5 @@
 const express = require('express');
+const spawn = require('await-spawn');
 
 const db = require("../database/DatabaseController");
 
@@ -33,6 +34,7 @@ router.post('/', async (req, res) => {
         res.status(200).send();
     }
     catch (err) {
+        console.log(err);
         res.status(404).send(err);
     }
 })

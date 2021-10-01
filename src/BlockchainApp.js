@@ -5,7 +5,7 @@ const walletUsers = require('./routers/WalletUsers');
 const transactions = require('./routers/Transactions');
 const userAuth = require('./routers/userAuth');
 const blockchain = require('./routers/Blockchain');
-const blockchainChat = require('./routers/BlockchainChat');
+const blockchainChat = require('./routers/blockchainChat');
 
 
 const apiUrl = "/blockchain-api/v1";
